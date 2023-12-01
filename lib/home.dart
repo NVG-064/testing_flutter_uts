@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:testing_flutter_uts/add_slip_gaji.dart';
+import 'package:testing_flutter_uts/auth_services.dart';
 import 'package:testing_flutter_uts/daftar_pegawai.dart';
 import 'package:testing_flutter_uts/add_pegawai.dart';
 import 'package:testing_flutter_uts/home_user.dart';
+import 'package:testing_flutter_uts/login.dart';
 import 'package:testing_flutter_uts/slip_gaji.dart';
 
 class Home extends StatelessWidget {
@@ -88,7 +90,13 @@ class Home extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.exit_to_app),
               title: Text("Logout"),
-              onTap: () {},
+              onTap: () async {
+                AuthServices.signOut();
+
+                // Navigate to the Login page
+                await Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+              },
             ),
           ],
         ),
